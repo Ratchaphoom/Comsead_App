@@ -13,63 +13,8 @@ const Reservation =(state={
     eventname : null,
     priceofevent : null,
     totals : null,
-    payment : null,
-    paymentuser : null,
-    totalslist : null,
-    amountlist : null,
-    paymentdate : null,
-    paymentyear : null,
-    paymentmonth : null,
-    paymentroom : null,
-    paymentamountroom : null
 },action)=>{
-  
     switch(action.type){
-        case 'SET_PAYMENT_AMOUNT_ROOM' : state={
-            ...state,
-            paymentamountroom : action.payload
-        }
-        break;
-        case 'SET_PAYMENT_ROOM' : state={
-            ...state,
-            paymentroom : action.payload
-        }
-        break;
-        case 'SET_PAYMENT_DATE' : state={
-            ...state,
-            paymentdate : action.payload
-        }
-        break;
-        case 'SET_PAYMENT_MONTH' : state={
-            ...state,
-            paymentmonth : action.payload
-        }
-        break;
-        case 'SET_PAYMENT_YEAR' : state={
-            ...state,
-            paymentyear : action.payload
-        }
-        break;
-        case 'SET_AMOUNT_LIST' : state={
-            ...state,
-            amountlist : action.payload
-        }
-        break;
-        case 'SET_TOTAL_LIST' : state={
-            ...state,
-            totalslist : action.payload
-        }
-        break;
-        case 'SET_PAYMENT_USER' : state={
-            ...state,
-            paymentuser : action.payload
-        }
-        break;
-        case 'SET_PAYMENT' : state={
-            ...state,
-            payment : action.payload
-        }
-        break;
         case 'SET_ID' : state={
             ...state,
             id : action.payload
