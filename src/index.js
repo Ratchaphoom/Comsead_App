@@ -16,7 +16,6 @@ const mylongger = (store) => (next) => (action) =>{
     console.log("Logged Action",action);
     next(action);
 }
-
 //Firebase Install
 var config = {
     apiKey: "AIzaSyAVeePOF1l-y6an6_Fcr6YoVK3-QleBqjk",
