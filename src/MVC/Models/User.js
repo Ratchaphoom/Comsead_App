@@ -12,24 +12,20 @@ const Userreducer = (state= {
                 ...state,
                username : action.payload
         }
-
         break;
         case "SET_PASSWORD" : state = {
             ...state,
             password : action.payload
-
     }
         break;
         case "SET_PICTURE" : state = {
             ...state,
             picture : action.payload
-
     }
         break;
         case "SET_STATUS" : state = {
             ...state,
             status : action.payload
-
     }
         break;
         case "SET_EMAIL" : state = {
@@ -48,3 +44,5 @@ const Userreducer = (state= {
     return state;
     state.lastValue.push(action.payload)
 };
+
+export default Userreducer

@@ -1,4 +1,4 @@
-const ReservationRoom =(state={
+const Reservation =(state={
     id : null,
     count : null,
     username : null,
@@ -144,3 +144,5 @@ const ReservationRoom =(state={
     return state;
     state.lastValue.push(action.payload)
 }
+
+export default Reservation
