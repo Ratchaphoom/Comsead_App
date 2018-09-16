@@ -1,4 +1,5 @@
-const Reservation =(state={
+const Reservation =(
+    state={
     id : null,
     count : null,
     username : null,
