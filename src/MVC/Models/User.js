@@ -9,7 +9,7 @@ const Userreducer = (state = {
     name: null,
     lastname: null,
     repeat: null
-}, action) => {
+},action) => {
     switch (action.type) {
         case "SET_USERNAME":
             state = {
