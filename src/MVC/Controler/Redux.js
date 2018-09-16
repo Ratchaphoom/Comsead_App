@@ -14,3 +14,4 @@ const store = createStore(combineReducers({user : Userreducer,status: StatusLogg
 ,applyMiddleware(mylongger,logger)
 
 );
+export default store
