@@ -53,6 +53,12 @@ const Userreducer = (state = {
                 lastname: action.payload
             }
             break;
+        case "SET_ADDRESS":
+            state = {
+                ...state,
+                address: action.payload
+            }
+            break;
     }
     return state;
     state.lastValue.push(action.payload)
