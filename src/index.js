@@ -8,7 +8,8 @@ import {BrowserRouter} from 'react-router-dom'
 // import {createStore, combineReducers, applyMiddleware,} from 'redux'
 // import logger from 'redux-logger'
 import {Provider} from 'react-redux'
-
+import Config from '../src/MVC/Controler/Firebase'
+import Store from '../src/MVC/Controler/Redux'
 
 
 // const mylongger = (store) => (next) => (action) =>{
@@ -21,7 +22,7 @@ import {Provider} from 'react-redux'
 //Browerrouter & Reduxrouter
   ReactDOM.render(
     <BrowserRouter>
-        <Provider >
+        <Provider store={Store}>
         <App/>
         </Provider> 
     </BrowserRouter> ,

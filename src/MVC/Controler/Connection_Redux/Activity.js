@@ -34,3 +34,6 @@ const Activity = (state = {
     state.lastValue.push(action.payload)
 }
 export default Activity
+
+
+
