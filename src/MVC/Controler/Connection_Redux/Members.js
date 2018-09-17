@@ -2,7 +2,7 @@ const Userreducer = (state = {
     id : null,
     name: null,
     picture: null,
-    status: null,
+    typemember: null,
     address: null,
     phone: null,
     email: null,
@@ -23,10 +23,10 @@ const Userreducer = (state = {
                 picture: action.payload
             }
             break;
-        case "SET_STATUS":
+        case "SET_TYPEMEMBER":
             state = {
                 ...state,
-                status: action.payload
+                typemember: action.payload
             }
             break;
         case "SET_EMAIL":
