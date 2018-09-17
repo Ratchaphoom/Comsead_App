@@ -1,20 +1,19 @@
-const Reservation = (
-    state = {
-        id: null,
-        count: null,
-        username: null,
-        checkin: null,
-        checkout: null,
-        amountroom: null,
-        extrabed: null,
-        roomname: null,
-        priceofroom: null,
-        activityname: null,
-        priceofactivty: null,
-        eventname: null,
-        priceofevent: null,
-        totals: null,
-    }, action) => {
+const Reservations = (state = {
+    id: null,
+    count: null,
+    username: null,
+    checkin: null,
+    checkout: null,
+    amountroom: null,
+    extrabed: null,
+    roomname: null,
+    priceofroom: null,
+    activityname: null,
+    priceofactivty: null,
+    eventname: null,
+    priceofevent: null,
+    totals: null,
+}, action) => {
     switch (action.type) {
         case 'SET_ID':
             state = {
@@ -105,4 +104,4 @@ const Reservation = (
     state.lastValue.push(action.payload)
 }
 
-export default Reservation
+export default Reservations

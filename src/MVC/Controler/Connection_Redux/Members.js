@@ -1,5 +1,5 @@
 const Userreducer = (state = {
-    id : null,
+    id: null,
     name: null,
     picture: null,
     typemember: null,
@@ -8,12 +8,12 @@ const Userreducer = (state = {
     email: null,
     name: null,
     lastname: null,
-},action) => {
+}, action) => {
     switch (action.type) {
-        case "SET_USERNAME":
+        case "SET_ID":
             state = {
                 ...state,
-                username: action.payload
+                id: action.payload
             }
             break;
         case "SET_PICTURE":
