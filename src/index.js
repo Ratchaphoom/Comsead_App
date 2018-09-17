@@ -17,7 +17,8 @@ import Store from '../src/MVC/Controler/Redux'
 //     next(action);
 // }
 
-// store={store}
+// firebase
+Config
 
 //Browerrouter & Reduxrouter
   ReactDOM.render(
