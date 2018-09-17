@@ -1,6 +1,6 @@
 const Userreducer = (state = {
-    username: null,
-    password: null,
+    id : null,
+    name: null,
     picture: null,
     status: null,
     address: null,
@@ -15,12 +15,6 @@ const Userreducer = (state = {
             state = {
                 ...state,
                 username: action.payload
-            }
-            break;
-        case "SET_PASSWORD":
-            state = {
-                ...state,
-                password: action.payload
             }
             break;
         case "SET_PICTURE":
