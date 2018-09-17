@@ -8,7 +8,6 @@ const Userreducer = (state = {
     email: null,
     name: null,
     lastname: null,
-    repeat: null
 },action) => {
     switch (action.type) {
         case "SET_USERNAME":
@@ -52,12 +51,6 @@ const Userreducer = (state = {
             state = {
                 ...state,
                 lastname: action.payload
-            }
-            break;
-        case "SET_REPEAT":
-            state = {
-                ...state,
-                repeat: action.payload
             }
             break;
     }

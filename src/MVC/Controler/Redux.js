@@ -1,17 +1,32 @@
-import {Router} from 'react-router-redux'
+import {
+    Router
+} from 'react-router-redux'
 import * as redux from 'redux'
 import logger from 'redux-logger'
 
+//Import Redux Connection
+import Members from './Connection_Redux/Members'
+import Login from './Connection_Redux/Login'
+import Events from './Connection_Redux/Event'
+import Activity from './Connection_Redux/Activity'
+import Room from './Connection_Redux/Room'
+import Reservation from './Connection_Redux/Reservation'
+
 
 // Redux logger//
-const mylongger = (store) => (next) => (action) =>{
-    console.log("Logged Action",action);
+const mylongger = (store) => (next) => (action) => {
+    console.log("Logged Action", action);
     next(action);
 }
- // Store 
-const store = createStore(combineReducers({user : Userreducer,status: StatusLogger,statususer : StatusUser,reservationroom : ReservationRoom,login : Login})
-,{}
-,applyMiddleware(mylongger,logger)
+// Store 
+const store = createStore(combineReducers({
+        member: Members,
+        reservation: Reservation,
+        login: Login,
+        room : Room,
+        activity : Activity,
+        event : Events
+    }), {}, applyMiddleware(mylongger, logger)
 
 );
 export default store
