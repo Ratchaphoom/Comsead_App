@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import './nav.css'
 import $ from 'jquery'
 import {NavLink} from 'react-router-dom'
-import Logo from '../Picture/logo.png'
+import Logo from '../../../Images/logo.png'
 import {connect} from 'react-redux'
 import * as firebase from 'firebase'
 
@@ -307,10 +307,15 @@ hanlerCleardata=()=>{
 }
 const mapStateToProps = (state) => {
   return {
-    user : state.user,
-    login : state.login,
+      member: state.member,
+      login: state.login,
+      reservation: state.reservation,
+      room: state.room,
+      activity: state.activity,
+      event: state.event,
   }
 }
+
 const mapDispathToProps = (dispath) => {
   return {
     setName: (username) => {

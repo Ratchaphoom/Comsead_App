@@ -52,7 +52,7 @@ Cards with background im
 
 .bg {
     /* The image used */
-    background-image: url("../Picture/Header.jpg");
+    background-image: url("../../../Images/Header.jpg") !important;
     /* Full height */
     height: 100%;
     /* Center and scale the image nicely */

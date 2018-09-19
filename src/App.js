@@ -6,7 +6,7 @@ import 'mdbreact/dist/css/mdb.css';
 import WOW from 'wowjs'
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
-
+import Navbar from './MVC/Component/Navigationbar/nav'
 class App extends Component {
   render() {
     new WOW.WOW().init();    
@@ -33,13 +33,7 @@ class App extends Component {
 });
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Information technology 2018</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Navbar/>
       </div>
     );
   }
