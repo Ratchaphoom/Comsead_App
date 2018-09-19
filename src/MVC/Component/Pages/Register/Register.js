@@ -72,7 +72,6 @@ onsetRepeatPassword = (event) => {
 }
 
 onchoosePicture = (event) => {
-
     const file = event.target.files[0];
     const storageRef = firebase.storage().ref('Pictures/' + " ' " + file.name + " ' ");
     const upload = storageRef.put(file);
@@ -90,8 +89,7 @@ onchoosePicture = (event) => {
             this.setState({
                 uploadValue: 100
             })
-        })
-
+        });
 }
 
 
@@ -109,6 +107,7 @@ componentDidMount=()=>{
             })
         });
  }
+
 onRegister = () => {
     firebase.database().ref('Register/Member/'+this.state.Username).set({
         ID : this.state.key,
@@ -209,7 +208,7 @@ const mapStateToProps = (state) => {
       member : state.member,
       login : state.login,
     }
-  }
+  };
 
   const mapDispathToProps = (dispath) => {
     return {
@@ -270,5 +269,5 @@ const mapStateToProps = (state) => {
               })
           }
     }
-  }
+  };
 export default connect(mapStateToProps,mapDispathToProps)(Register)

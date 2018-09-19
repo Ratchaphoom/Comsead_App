@@ -6,6 +6,23 @@ import {connect} from 'react-redux'
 import $ from 'jquery'
 
 class Navigationitems extends Component{
+    state={
+        username : null,
+        password : null,
+        request : 0
+    }
+
+    hanlerUsername =(event)=>{
+        this.setState({
+            username : event.target.value
+        })
+    }
+
+    hanlerPassword=(event)=>{
+        this.setState({
+            password : event.target.value
+        })
+    }
     render(){
         $( document ).ready(function() {
             $('.leftmenutrigger').on('click', function(e) {
@@ -13,6 +30,8 @@ class Navigationitems extends Component{
             e.preventDefault();
            });
        });
+
+       //if username === null
         let loginlink = null
         let popup = null 
         if(this.props.login.username === null){
@@ -32,10 +51,10 @@ class Navigationitems extends Component{
                              <div className="modal-body">
                               <div className="row md-form">
                                 <div className="col" style={{textAlign : "center"}}>
-                                <div style={{width : "fit-content",float :"right"}}><input type="text" className="form-control" placeholder="Username" onKeyUp={this.onChangeusername}  required/></div>
+                                <div style={{width : "fit-content",float :"right"}}><input type="text" className="form-control" placeholder="Username" onKeyUp={this.hanlerUsername}  required/></div>
                                 </div>
                                 <div className="col" style={{textAlign :"center"}}>
-                                <div style={{width : "fit-content",float :"left"}}><input type="password" className="form-control" placeholder="Password" onKeyUp={this.onChangepassword} required/></div>
+                                <div style={{width : "fit-content",float :"left"}}><input type="password" className="form-control" placeholder="Password" onKeyUp={this.hanlerPassword} required/></div>
                               </div>
                               </div>
                              </div>
