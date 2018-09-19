@@ -3,13 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 import { Route, Switch,NavLink } from 'react-router-dom'
 import 'mdbreact/dist/css/mdb.css';
-import WOW from 'wowjs'
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 import Navbar from './MVC/Component/Navigationbar/nav'
+import Register from './Component/Register/Register.js'
 class App extends Component {
   render() {
-    new WOW.WOW().init();    
       AOS.init();
   // You can also pass an optional settings object
   // below listed default settings
@@ -34,6 +33,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar/>
+        <Register/>
       </div>
     );
   }
