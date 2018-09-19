@@ -3,9 +3,51 @@ import Logo from '../../../Images/logo.png'
 import './nav.css'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
+import $ from 'jquery'
 
 class Navigationitems extends Component{
     render(){
+        $( document ).ready(function() {
+            $('.leftmenutrigger').on('click', function(e) {
+            $('.side-nav').toggleClass("open");
+            e.preventDefault();
+           });
+       });
+        console.log(this.props.login.username)
+        let loginlink = null
+        let popup = null 
+        if(this.props.login.username === null){
+            loginlink = <div style={{paddingRight : "125px"}}>
+                        <NavLink className="nav-link" exact to="/Login"><div style={{fontSize : "16px"}}>Login</div></NavLink>
+                        <span className="sr-only">(current)</span>
+                        </div>
+            popup = <div className="modal fade" id="exampleModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                         <div className="modal-dialog" role="document">
+                           <div className="modal-content">
+                             <div className="modal-header">
+                               <h5 className="modal-title" id="exampleModalLabel"> <div className="login">Login</div></h5>
+                               <button type="button" class="close" data-dismiss="modal" aria-label="Close" style={{width: "fit-content"}}>
+                                 <span aria-hidden="true">&times;</span>
+                               </button>
+                             </div>
+                             <div className="modal-body">
+                              <div className="row md-form">
+                                <div className="col" style={{textAlign : "center"}}>
+                                <div style={{width : "fit-content",float :"right"}}><input type="text" className="form-control" placeholder="Username" onKeyUp={this.onChangeusername}  required/></div>
+                                </div>
+                                <div className="col" style={{textAlign :"center"}}>
+                                <div style={{width : "fit-content",float :"left"}}><input type="password" className="form-control" placeholder="Password" onKeyUp={this.onChangepassword} required/></div>
+                              </div>
+                              </div>
+                             </div>
+                             <div className="modal-footer">
+                                <NavLink ecact to="/Register"><button type="button" className="btn btn-danger">Register</button></NavLink>
+                                <NavLink ecact to="/"><button type="button" className="btn btn-success" onClick={this.checkLogin}>Login</button></NavLink>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+        }
         return(
             <div>
             <nav className="navbar fixed-top navbar-expand-lg navbar navbar-dark bg-dark ">
@@ -49,29 +91,20 @@ class Navigationitems extends Component{
                         <NavLink className="nav-link" exact to="/"><div style={{fontSize : "16px"}}>Contact</div></NavLink>
                         <span className="sr-only">(current)</span>
                     </li>
-                    {/* <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                        </a>
-                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a className="dropdown-item" href="#">Action</a>
-                        <a className="dropdown-item" href="#">Another action</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link disabled" href="#">Disabled</a>
-                    </li> */}
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-
-                    </form>
+                    <ul className="navbar-nav ml-md-auto d-md-flex">
+                    <li className="nav-item" data-toggle="modal" data-target="#exampleModals">
+                            {loginlink}
+                    </li>
+                    </ul>
+                </form>
                 </div>
             </nav>
+            {popup}
             <div className="bg img-fluid">
             <div style={{alignItems : "center",padding : "300px"}} data-aos="zoom-in">
-            <div className="headerfont">Wellcome to<div data-aos="fade-in" style={{width: "200px",marginLeft : "auto",marginRight:"auto"}}><img className="img-fluid" alt="Responsive image" src={Logo} style={{width : "300px"}}/></div></div>
+            <div className="headerfont">Welcome to<div data-aos="fade-in" style={{width: "200px",marginLeft : "auto",marginRight:"auto"}}><img className="img-fluid" alt="Responsive image" src={Logo} style={{width : "300px"}}/></div></div>
             <hr className="hr-light wow fadeInLeft" data-wow-delay="0.3s"/>
             <div style={{textAlign : "center",fontSize:"15px",padding : "10px",color : "#F4F5F8"}}>คำแสด ริเวอร์ แคว รีสอร์ท มอบความสะดวกสบายให้กับวันหยุดพักผ่อนของท่านด้วยบรรยากาศ สวนป่าเขียวขจี พร้อมกิจกรรมสนุกสนานเพลิดเพลิน และ ห้องพัก ที่ให้ความรู้สึกเหมือนบ้าน และมีความเป็นส่วนตัวสูงกว่ามาตรฐานทั่วไป</div>   
             </div>
@@ -83,8 +116,8 @@ class Navigationitems extends Component{
 }
 const mapStateToProps = (state) => {
     return {
-      member : state.user,
-      login : state.login,
+        member : state.member,
+        login : state.login,
     }
   }
 
@@ -140,8 +173,12 @@ const mapStateToProps = (state) => {
               type: "SET_ADDRESS",
               payload: address
             })
+          },setPhone: (phone) =>{
+              dispath({
+                  type: "SET_PHONE",
+                  payload: phone
+              })
           }
     }
   }
-  
 export default connect(mapStateToProps,mapDispathToProps)(Navigationitems)
