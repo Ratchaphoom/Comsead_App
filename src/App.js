@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Route, Switch,NavLink } from 'react-router-dom'
 import 'mdbreact/dist/css/mdb.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 import Navbar from './MVC/Component/Navigationbar/nav'
+import RouterLink from './MVC/Controler/RouterLink/RouterLink'
 class App extends Component {
   render() {
       AOS.init();
@@ -32,6 +32,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar/>
+        <RouterLink/>
       </div>
     );
   }
