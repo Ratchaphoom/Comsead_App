@@ -7,12 +7,12 @@ import {createStore, combineReducers, applyMiddleware} from 'redux'
 
 
 //Import Redux Connection
-import Members from './Connection_Redux/Members'
-import Login from './Connection_Redux/Login'
-import Events from './Connection_Redux/Event'
-import Activity from './Connection_Redux/Activity'
-import Room from './Connection_Redux/Room'
-import Reservation from './Connection_Redux/Reservation'
+import Members from './ReduxManager/Members'
+import Login from './ReduxManager/Login'
+import Events from './ReduxManager/Event'
+import Activity from './ReduxManager/Activity'
+import Room from './ReduxManager/Room'
+import Reservation from './ReduxManager/Reservation'
 
 
 

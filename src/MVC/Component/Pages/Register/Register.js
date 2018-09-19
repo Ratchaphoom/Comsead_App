@@ -18,7 +18,6 @@ class Register extends Component{
         Picture: null,
         uploadValue: 0,
         key : null
-
     };
     this.onchoosePicture = this.onchoosePicture.bind(this);
 }

@@ -13,7 +13,6 @@ class Navigationitems extends Component{
             e.preventDefault();
            });
        });
-        console.log(this.props.login.username)
         let loginlink = null
         let popup = null 
         if(this.props.login.username === null){

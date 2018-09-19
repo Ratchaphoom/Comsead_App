@@ -6,7 +6,6 @@ import 'mdbreact/dist/css/mdb.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 import Navbar from './MVC/Component/Navigationbar/nav'
-import Register from './MVC/Component/Register/Register'
 class App extends Component {
   render() {
       AOS.init();
@@ -33,7 +32,6 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar/>
-        <Register/>
       </div>
     );
   }
