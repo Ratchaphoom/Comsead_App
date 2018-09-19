@@ -25,12 +25,12 @@ const mylongger = (store) => (next) => (action) => {
 
 // Store 
 const store = createStore(combineReducers({
-        Members,
-        Reservation,
-        Login,
-        Room,
-        Activity,
-        Events
+        member : Members,
+        reservation : Reservation,
+        login : Login,
+        room :Room,
+        activity : Activity,
+        event :Events
     }), {}, applyMiddleware(mylongger, logger)
 );
 export default store
