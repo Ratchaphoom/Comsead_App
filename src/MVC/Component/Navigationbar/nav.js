@@ -83,16 +83,102 @@ class Navigationitems extends Component{
            });
        });
 
-       console.log(this.state)
        //if username === null
         let loginlink = null
-        let popup = null 
+        let popup = null     
+        let status = null 
+
+        if(this.props.member.typemember === "Member"){
+          status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
+          <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">
+          {this.props.login.username}</NavLink>
+          <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.props.member.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+          <NavLink className="dropdown-item" exact to="/ReservationRoom">ReservationRoom</NavLink>
+          <NavLink className="dropdown-item" exact to="/ReservationList">ReservationList</NavLink>
+          <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout">Logout</NavLink>
+          </div>
+          <span className="sr-only">(current)</span>
+          </li>
+          </div>
+      }
+       if(this.props.member.typemember === "Admin"){
+          status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
+          <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{this.props.login.username}</NavLink>
+          <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.props.member.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+          <NavLink className="dropdown-item" exact to="/ReservationRoom">ReservationRoom</NavLink>
+          <NavLink className="dropdown-item" exact to="/SuperUserEditRoom">Edit ReservationRoom</NavLink>
+          <NavLink className="dropdown-item" exact to="/SuperUserCancelRoom">Delete ReservationRoom</NavLink>
+          <NavLink className="dropdown-item" exact to="/ReservationActivity">ReservationActivity</NavLink>
+          <NavLink className="dropdown-item" exact to="/SuperUserEditActivity">Edit ReservationActivity</NavLink>
+          <NavLink className="dropdown-item" exact to="/SuperUserCancelActivity">Delete ReservationActivity</NavLink>
+          <NavLink className="dropdown-item" exact to="/ReservationEvent">ReservationEvent</NavLink>
+          <NavLink className="dropdown-item" exact to="/SuperUserEditEvent">Edit ReservationEvent</NavLink>
+          <NavLink className="dropdown-item" exact to="/SuperUserCancelEvent">Delete ReservationEvent</NavLink>
+          <NavLink className="dropdown-item" exact to="/SuperUserSetpermission">Permission</NavLink>
+          <NavLink className="dropdown-item" exact to="/ReservationList">Reservation List</NavLink>
+          <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout">Logout</NavLink>
+
+          </div>
+          <span className="sr-only">(current)</span>
+          </li>
+          </div>
+       }
+       if(this.props.member.typemember === "Room Manager"){
+        status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
+        <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{this.props.login.username}</NavLink>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.props.member.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+        <NavLink className="dropdown-item" exact to="/ReservationRoom">ReservationRoom</NavLink>
+        <NavLink className="dropdown-item" exact to="/SuperUserEditRoom">Edit ReservationRoom</NavLink>
+        <NavLink className="dropdown-item" exact to="/SuperUserCancelRoom">Delete ReservationRoom</NavLink>
+        <NavLink className="dropdown-item" exact to="/ReservationList">Reservation List</NavLink>
+        <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout">Logout</NavLink>
+
+        </div>
+        <span className="sr-only">(current)</span>
+        </li>
+        </div>
+
+      }
+      if(this.props.member.typemember === "Activity Manager"){
+        status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
+        <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{this.props.login.username}</NavLink>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.props.member.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+        <NavLink className="dropdown-item" exact to="/ReservationActivity">ReservationActivity</NavLink>
+        <NavLink className="dropdown-item" exact to="/SuperUserEditActivity">Edit ReservationActivity</NavLink>
+        <NavLink className="dropdown-item" exact to="/SuperUserCancelActivity">Delete ReservationActivity</NavLink>
+        <NavLink className="dropdown-item" exact to="/ReservationList">Reservation List</NavLink>
+        <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout">Logout</NavLink>
+        </div>
+        <span className="sr-only">(current)</span>
+        </li>
+        </div>
+      }
+      if(this.props.member.typemember === "Event Manager"){
+        status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
+        <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">
+       {this.props.login.username}</NavLink>
+        <div className="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.props.member.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+        <NavLink className="dropdown-item" exact to="/ReservationEvent">ReservationEvent</NavLink>
+        <NavLink className="dropdown-item" exact to="/SuperUserEditEvent">Edit ReservationEvent</NavLink>
+        <NavLink className="dropdown-item" exact to="/SuperUserCancelEvent">Delete ReservationEvent</NavLink>
+        <NavLink className="dropdown-item" exact to="/ReservationList">Reservation List</NavLink>
+        <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout">Logout</NavLink>
+        </div>
+        <span className="sr-only">(current)</span>
+        </li>
+        </div>
+      }
         if(this.props.login.username === null){
             loginlink = <div style={{paddingRight : "125px"}}>
                         <NavLink className="nav-link" exact to="/Login"><div style={{fontSize : "16px"}}>Login</div></NavLink>
                         <span className="sr-only">(current)</span>
                         </div>
-            popup = <div className="modal fade" id="exampleModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            popup = <div className="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                          <div className="modal-dialog" role="document">
                            <div className="modal-content">
                              <div className="modal-header">
@@ -118,6 +204,21 @@ class Navigationitems extends Component{
                            </div>
                          </div>
                        </div>
+        }
+        if(this.props.login.username!==null){
+          loginlink = status
+          popup = <div className="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Login Success</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style={{width: "fit-content"}}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
         }
         return(
             <div>
@@ -165,7 +266,7 @@ class Navigationitems extends Component{
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
                     <ul className="navbar-nav ml-md-auto d-md-flex">
-                    <li className="nav-item" data-toggle="modal" data-target="#exampleModals">
+                    <li className="nav-item" data-toggle="modal" data-target="#Login">
                             {loginlink}
                     </li>
                     </ul>
