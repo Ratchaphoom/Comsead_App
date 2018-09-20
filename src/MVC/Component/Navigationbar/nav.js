@@ -23,6 +23,9 @@ class Navigationitems extends Component{
             password : event.target.value
         })
     }
+    hanlerLogin=()=>{
+        
+    }
     render(){
         $( document ).ready(function() {
             $('.leftmenutrigger').on('click', function(e) {
@@ -60,7 +63,7 @@ class Navigationitems extends Component{
                              </div>
                              <div className="modal-footer">
                                 <NavLink ecact to="/Register"><button type="button" className="btn btn-danger">Register</button></NavLink>
-                                <NavLink ecact to="/"><button type="button" className="btn btn-success" onClick={this.checkLogin}>Login</button></NavLink>
+                                <NavLink ecact to="/"><button type="button" className="btn btn-success" onClick={this.hanlerLogin}>Login</button></NavLink>
                              </div>
                            </div>
                          </div>
