@@ -15,7 +15,7 @@ const Reservations = (state = {
     totals: null,
 }, action) => {
     switch (action.type) {
-        case 'SET_ID':
+        case 'SET_RESERVATION_ID':
             state = {
                 ...state,
                 id: action.payload

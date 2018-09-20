@@ -4,12 +4,22 @@ import './nav.css'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import $ from 'jquery'
+import mapStateToProps from '../../../MVC/Controler/Mapstate/Mapstate'
+import * as firebase from 'firebase'
 
 class Navigationitems extends Component{
     state={
         username : null,
         password : null,
-        request : 0
+        name : null,
+        lastname : null,
+        address : null,
+        email : null,
+        picture : null,
+        typemember : null,
+        phone : null,
+        request : 0,
+        id : null
     }
 
     hanlerUsername =(event)=>{
@@ -24,7 +34,46 @@ class Navigationitems extends Component{
         })
     }
     hanlerLogin=()=>{
-        
+      return firebase.database().ref('Register/Member').once('value').then((snapshort) => {
+        var items = []
+        snapshort.forEach(function (childSnapshort) {
+            var childKey = childSnapshort.key
+            var childData = childSnapshort.val()
+            items.push(childData)
+        })
+        var Login = Object.keys(items)
+        for (var i = 0; i < Login.length; i++) {
+            var k = Login[i]
+            if(k!==null&&this.state.username===items[k].Username){
+              this.setState({
+                request : "001",
+                username : items[k].Username,
+                password : items[k].Password,
+                name : items[k].Name,
+                lastname : items[k].Lastname,
+                address : items[k].Address,
+                email : items[k].Email,
+                phone : items[k].Phone,
+                picture : items[k].Picture,
+                typemember : items[k].Status,
+                id : items[k].ID
+              })
+            }
+        }
+        if(this.state.request==="001"){
+          this.props.setUsername(this.state.username)
+          this.props.setPassword(this.state.password)
+          this.props.setName(this.state.name)
+          this.props.setLastname(this.state.lastname)
+          this.props.setAddress(this.state.address)
+          this.props.setEmail(this.state.email)
+          this.props.setPhone(this.state.phone)
+          this.props.setPicture(this.state.picture)
+          this.props.setTypemember(this.state.typemember)
+          this.props.setID(this.state.id)
+        }
+    });
+      
     }
     render(){
         $( document ).ready(function() {
@@ -34,6 +83,7 @@ class Navigationitems extends Component{
            });
        });
 
+       console.log(this.state)
        //if username === null
         let loginlink = null
         let popup = null 
@@ -135,12 +185,6 @@ class Navigationitems extends Component{
     }
 
 }
-const mapStateToProps = (state) => {
-    return {
-        member : state.member,
-        login : state.login,
-    }
-  }
 
   const mapDispathToProps = (dispath) => {
     return {
