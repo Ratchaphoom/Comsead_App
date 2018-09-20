@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import Logo from '../../../Images/logo.png'
-import './nav.css'
+import '../CSS/nav.css'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import $ from 'jquery'
