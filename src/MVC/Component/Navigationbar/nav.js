@@ -75,6 +75,18 @@ class Navigationitems extends Component{
     });
       
     }
+    hanlerLogout=()=>{
+      this.props.setUsername(null)
+      this.props.setPassword(null)
+      this.props.setName(null)
+      this.props.setLastname(null)
+      this.props.setAddress(null)
+      this.props.setEmail(null)
+      this.props.setPhone(null)
+      this.props.setPicture(null)
+      this.props.setTypemember(null)
+      this.props.setID(null)
+    }
     render(){
         $( document ).ready(function() {
             $('.leftmenutrigger').on('click', function(e) {
@@ -85,15 +97,34 @@ class Navigationitems extends Component{
 
        //if username === null
         let loginlink = null
+        let logoutlink = null
         let popup = null     
         let status = null 
+        let datataget = null
 
+
+        logoutlink = <div className="modal fade" id="exampleLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">Are you sure to logout?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" style={{width: "fit-content"}}>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-footer">
+             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+             <button type="button" className="btn btn-primary" onClick={this.hanlerLogout}>Sure</button>
+            </div>
+          </div>
+        </div>
+      </div>
         if(this.props.member.typemember === "Member"){
           status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
           <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">
-          {this.props.login.username}</NavLink>
+          {this.state.username}</NavLink>
           <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.props.member.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+          <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.state.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
           <NavLink className="dropdown-item" exact to="/ReservationRoom">ReservationRoom</NavLink>
           <NavLink className="dropdown-item" exact to="/ReservationList">ReservationList</NavLink>
           <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout">Logout</NavLink>
@@ -104,9 +135,9 @@ class Navigationitems extends Component{
       }
        if(this.props.member.typemember === "Admin"){
           status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
-          <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{this.props.login.username}</NavLink>
+          <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{this.state.username}</NavLink>
           <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.props.member.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+          <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.state.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
           <NavLink className="dropdown-item" exact to="/ReservationRoom">ReservationRoom</NavLink>
           <NavLink className="dropdown-item" exact to="/SuperUserEditRoom">Edit ReservationRoom</NavLink>
           <NavLink className="dropdown-item" exact to="/SuperUserCancelRoom">Delete ReservationRoom</NavLink>
@@ -127,9 +158,9 @@ class Navigationitems extends Component{
        }
        if(this.props.member.typemember === "Room Manager"){
         status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
-        <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{this.props.login.username}</NavLink>
+        <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{this.state.username}</NavLink>
         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.props.member.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.state.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
         <NavLink className="dropdown-item" exact to="/ReservationRoom">ReservationRoom</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserEditRoom">Edit ReservationRoom</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserCancelRoom">Delete ReservationRoom</NavLink>
@@ -144,9 +175,9 @@ class Navigationitems extends Component{
       }
       if(this.props.member.typemember === "Activity Manager"){
         status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
-        <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{this.props.login.username}</NavLink>
+        <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{this.state.username}</NavLink>
         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.props.member.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.state.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
         <NavLink className="dropdown-item" exact to="/ReservationActivity">ReservationActivity</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserEditActivity">Edit ReservationActivity</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserCancelActivity">Delete ReservationActivity</NavLink>
@@ -160,9 +191,9 @@ class Navigationitems extends Component{
       if(this.props.member.typemember === "Event Manager"){
         status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
         <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">
-       {this.props.login.username}</NavLink>
+       {this.state.username}</NavLink>
         <div className="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.props.member.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.state.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
         <NavLink className="dropdown-item" exact to="/ReservationEvent">ReservationEvent</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserEditEvent">Edit ReservationEvent</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserCancelEvent">Delete ReservationEvent</NavLink>
@@ -178,6 +209,7 @@ class Navigationitems extends Component{
                         <NavLink className="nav-link" exact to="/Login"><div style={{fontSize : "16px"}}>Login</div></NavLink>
                         <span className="sr-only">(current)</span>
                         </div>
+            datataget = "#Login"
             popup = <div className="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                          <div className="modal-dialog" role="document">
                            <div className="modal-content">
@@ -204,6 +236,18 @@ class Navigationitems extends Component{
                            </div>
                          </div>
                        </div>
+            logoutlink = <div className="modal fade" id="exampleLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div className="modal-dialog" role="document">
+                         <div className="modal-content">
+                           <div className="modal-header">
+                             <h5 className="modal-title" id="exampleModalLabel">Login Success</h5>
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" style={{width: "fit-content"}}>
+                               <span aria-hidden="true">&times;</span>
+                             </button>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
         }
         if(this.props.login.username!==null){
           loginlink = status
@@ -266,7 +310,7 @@ class Navigationitems extends Component{
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
                     <ul className="navbar-nav ml-md-auto d-md-flex">
-                    <li className="nav-item" data-toggle="modal" data-target="#Login">
+                    <li className="nav-item" data-toggle="modal" data-target={datataget}>
                             {loginlink}
                     </li>
                     </ul>
@@ -274,6 +318,7 @@ class Navigationitems extends Component{
                 </div>
             </nav>
             {popup}
+            {logoutlink}
             <div className="bg img-fluid">
             <div style={{alignItems : "center",padding : "300px"}} data-aos="zoom-in">
             <div className="headerfont">Welcome to<div data-aos="fade-in" style={{width: "200px",marginLeft : "auto",marginRight:"auto"}}><img className="img-fluid" alt="Responsive image" src={Logo} style={{width : "300px"}}/></div></div>
