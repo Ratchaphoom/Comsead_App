@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import * as firebase from 'firebase'
 import {connect} from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import mapStateToProps from '../../Controler/Mapstate/Mapstate'
+import Login from '../../Models/Loginbean'
  class User extends Component {
    componentDidMount=()=>{
     
    }
      hanlerdeleteUser=()=>{
-        if(this.props.Status!=="Admin"){
-            firebase.database().ref('Register/Member/'+this.props.Username).remove()
-        }
+        return  firebase.database().ref('Register/Member/'+this.props.Username).remove();
      }
      hanlersetUser=()=>{
-         this.props.setStatususer(this.props.Username)
+         this.props.setLoginStatus(this.props.Username)
+         
      }
     render(){
       let disablecheck = false
@@ -42,20 +43,4 @@ import { NavLink } from 'react-router-dom'
         )
     }
  }
-const mapStateToProps = (state) => {
-    return {
-      user : state.user,
-      statususer : state.statususer
-    }
-  }
-const mapDispathToProps = (dispath) => {
-    return {
-      setStatususer: (username) => {
-        dispath({
-          type: 'SET_STATUS_USER',
-          payload: username
-        })
-      }
-    }
-  }
- export default connect(mapStateToProps,mapDispathToProps)(User)
+ export default connect(mapStateToProps,Login)(User)

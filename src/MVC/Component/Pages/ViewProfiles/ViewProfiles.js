@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import mapStateToProps from '../../..//Controler/Mapstate/Mapstate'
 import {connect} from 'react-redux'
 import * as firebase from 'firebase'
+import {NavLink} from 'react-router-dom'
 class ViewProfiles extends Component{
     constructor() {
         super();
@@ -18,7 +19,9 @@ class ViewProfiles extends Component{
             Picture: null,
             uploadValue: 0,
             key : null,
-            Typemember : null
+            Typemember : null,
+            changes : null,
+            request : null
         };
         this.onchoosePicture = this.onchoosePicture.bind(this);
     }
@@ -86,6 +89,7 @@ class ViewProfiles extends Component{
             Typemember : event.target.value
         })
     }
+
     //Controller//
     hanlersetValuetoProfiles=()=>{
         this.setState({
@@ -111,9 +115,11 @@ class ViewProfiles extends Component{
                 Username : this.state.Username,
                 Password : this.state.Password,
                 Picture : this.state.Picturename,
-            }).then(
-                alert("Edit Success")
-            );
+            }).then(()=>{
+                this.setState({
+                    changes : "001"
+                });
+            });
             this.props.setUsername(this.state.Username)
             this.props.setPassword(this.state.Password)
             this.props.setName(this.state.Name)
@@ -133,27 +139,58 @@ class ViewProfiles extends Component{
                 Password : this.state.Password,
                 Picture : this.state.Picturename,
                 Status : this.state.Typemember
-            }).then(
-                alert("Edit Success")
-            );
-            this.props.setUsername(this.state.Username)
-            this.props.setPassword(this.state.Password)
-            this.props.setName(this.state.Name)
-            this.props.setLastname(this.state.Lastname)
-            this.props.setEmail(this.state.Email)
-            this.props.setAddress(this.state.Address)
-            this.props.setPhone(this.state.Phone)
-            this.props.setPicture(this.state.Picturename)
-            this.props.setTypemember(this.state.Typemember)
+            }).then(()=>{
+                this.setState({
+                    changes : "001"
+                });
+            });
+            if(this.props.login.username===this.state.Username){
+                this.props.setUsername(this.state.Username)
+                this.props.setPassword(this.state.Password)
+                this.props.setName(this.state.Name)
+                this.props.setLastname(this.state.Lastname)
+                this.props.setEmail(this.state.Email)
+                this.props.setAddress(this.state.Address)
+                this.props.setPhone(this.state.Phone)
+                this.props.setPicture(this.state.Picturename)
+                this.props.setTypemember(this.state.Typemember)
+            }
         }
        
     }
-    componentDidMount=()=>{
-        this.hanlersetValuetoProfiles()
-        if(this.props.login.username!==null){
-        this.hanlerStatus()
+    handlerViewprofilescontroller=()=>{
+        if(this.props.login.loginstatus!==null){
+            return firebase.database().ref('Register/Member').once('value').then((snapshort) => {
+              var items = []
+              snapshort.forEach(function (childSnapshort) {
+                  var childKey = childSnapshort.key
+                  var childData = childSnapshort.val()
+                  items.push(childData)
+              })
+              var Login = Object.keys(items)
+              for (var i = 0; i < Login.length; i++) {
+                  var k = Login[i]
+                  if(k!== null&&this.props.login.loginstatus===items[k].Username){
+                    this.setState({
+                      request : "001",
+                      Username : items[k].Username,
+                      Password : items[k].Password,
+                      Name : items[k].Name,
+                      Lastname : items[k].Lastname,
+                      Address : items[k].Address,
+                      Email : items[k].Email,
+                      Phone : items[k].Phone,
+                      Picturename : items[k].Picture,
+                      Typemember : items[k].Status,
+                      ID : items[k].ID
+                    });
+                  }
+              }
+          });
         }
-        
+    }
+    hanlerClearToReturnPermission=()=>{
+        this.props.setLoginStatus(null)
     }
     hanlerStatus=()=>{
         var select = document.getElementById("select")
@@ -165,14 +202,23 @@ class ViewProfiles extends Component{
           option.setAttribute("value",arr[i]);
           select.insertBefore(option,select.lastChild);  
     }
-   
-}
-
-
+    }
+    
+    //Life cycles
+    componentDidMount=()=>{
+        this.hanlersetValuetoProfiles()
+        if(this.props.login.username!==null){
+        this.hanlerStatus()
+        }
+        this.handlerViewprofilescontroller()
+        
+    }
     render(){
         let Modal = null 
         let Profiles = null
         let Checkdisable = false
+        let AdminLink = false
+        let ProfilesController = null
 
         //Modals
         Modal = <div className="modal fade" id="EditProfiles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -194,10 +240,33 @@ class ViewProfiles extends Component{
           </div>
         </div>
       </div>
+      if(this.state.changes==="001"){
+        Modal = <div className="modal fade" id="EditProfiles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">Edit Profiles</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              Changes Profiles Success
+            </div>
+            <div className="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
 
       //Checkdisble
       if(this.props.member.typemember === "Member"||this.props.member.typemember === "Event Manager"||this.props.member.typemember === "Activity Manager"||this.props.member.typemember === "Room Manager"&&this.state.Username !=="null"){
         Checkdisable = true
+        AdminLink = "/"
+      }if(this.props.member.typemember === "Admin"){
+        AdminLink = "/SuperUserSetpermission"
       }
       //All Views
       if(this.props.login.username===null){
@@ -260,7 +329,7 @@ class ViewProfiles extends Component{
         <div className="container">
         <div className="row" style={{padding : "10px"}}>
         <div className="col" >
-            <button type="button" className="btn btn-danger" onClick={this.onReturn} style={{width : '100%'}}>Cancel</button>
+            <NavLink exact to={AdminLink}><button type="button" className="btn btn-danger" onClick={this.hanlerClearToReturnPermission} style={{width : '100%'}}>Cancel</button></NavLink>
         </div>
         <div className="col" style={{textAlign : "center"}}><button type="submit" className="btn btn-success"style={{width : '100%'}}
         data-toggle="modal" data-target="#EditProfiles">Edit</button></div>
@@ -268,6 +337,9 @@ class ViewProfiles extends Component{
         </div>
         </div></center>
         
+      }
+      if(this.props.login.loginstatus!==null){
+
       }
         return(
             <div className="container">

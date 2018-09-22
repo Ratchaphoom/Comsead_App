@@ -9,6 +9,8 @@ import * as firebase from 'firebase'
 
 class Navigationitems extends Component{
     state={
+        adminusername : null,
+        adminpicture :null,
         username : null,
         password : null,
         name : null,
@@ -73,7 +75,6 @@ class Navigationitems extends Component{
           this.props.setID(this.state.id);
         }
     });
-      
     }
     hanlerLogout=()=>{
       this.props.setUsername(null)
@@ -94,15 +95,12 @@ class Navigationitems extends Component{
             e.preventDefault();
            });
        });
-
        //if username === null
         let loginlink = null
         let logoutlink = null
         let popup = null     
         let status = null 
         let datataget = null
-
-
         logoutlink = <div className="modal fade" id="exampleLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
@@ -119,12 +117,25 @@ class Navigationitems extends Component{
           </div>
         </div>
       </div>
+
+        //View state Check
+        let adminusername = null
+        let adminpicture =null
+        if(this.state.adminusername===null&&this.state.adminpicture===null){
+          adminusername = this.state.username
+          adminpicture = this.state.picture
+        }if(this.state.adminusername!==null&&this.state.adminpicture!==null){
+          adminusername = this.state.adminusername
+          adminpicture = this.state.adminpicture
+        }
+
+       //Typemember check
         if(this.props.member.typemember === "Member"){
           status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
           <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">
-          {this.state.username}</NavLink>
+          {adminusername}</NavLink>
           <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.state.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+          <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={adminpicture} alt="Logo" height="60" width="auto" /></div></NavLink>
           <NavLink className="dropdown-item" exact to="/ReservationRoom">ReservationRoom</NavLink>
           <NavLink className="dropdown-item" exact to="/ReservationList">ReservationList</NavLink>
           <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout">Logout</NavLink>
@@ -135,9 +146,9 @@ class Navigationitems extends Component{
       }
        if(this.props.member.typemember === "Admin"){
           status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
-          <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{this.state.username}</NavLink>
+          <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{adminusername}</NavLink>
           <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.state.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+          <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={adminpicture} alt="Logo" height="60" width="auto" /></div></NavLink>
           <NavLink className="dropdown-item" exact to="/ReservationRoom">ReservationRoom</NavLink>
           <NavLink className="dropdown-item" exact to="/SuperUserEditRoom">Edit ReservationRoom</NavLink>
           <NavLink className="dropdown-item" exact to="/SuperUserCancelRoom">Delete ReservationRoom</NavLink>
@@ -158,9 +169,9 @@ class Navigationitems extends Component{
        }
        if(this.props.member.typemember === "Room Manager"){
         status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
-        <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{this.state.username}</NavLink>
+        <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{adminusername}</NavLink>
         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.state.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={adminpicture} alt="Logo" height="60" width="auto" /></div></NavLink>
         <NavLink className="dropdown-item" exact to="/ReservationRoom">ReservationRoom</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserEditRoom">Edit ReservationRoom</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserCancelRoom">Delete ReservationRoom</NavLink>
@@ -175,9 +186,9 @@ class Navigationitems extends Component{
       }
       if(this.props.member.typemember === "Activity Manager"){
         status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
-        <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{this.state.username}</NavLink>
+        <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{adminusername}</NavLink>
         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.state.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={adminpicture} alt="Logo" height="60" width="auto" /></div></NavLink>
         <NavLink className="dropdown-item" exact to="/ReservationActivity">ReservationActivity</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserEditActivity">Edit ReservationActivity</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserCancelActivity">Delete ReservationActivity</NavLink>
@@ -191,9 +202,9 @@ class Navigationitems extends Component{
       if(this.props.member.typemember === "Event Manager"){
         status = <div style={{paddingRight : "125px"}}><li className="nav-item dropdown" data-toggle="modal" style={{fontSize : "16px"}}>
         <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">
-       {this.state.username}</NavLink>
+       {adminusername}</NavLink>
         <div className="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={this.state.picture} alt="Logo" height="60" width="auto" /></div></NavLink>
+        <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={adminpicture} alt="Logo" height="60" width="auto" /></div></NavLink>
         <NavLink className="dropdown-item" exact to="/ReservationEvent">ReservationEvent</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserEditEvent">Edit ReservationEvent</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserCancelEvent">Delete ReservationEvent</NavLink>
@@ -389,7 +400,7 @@ class Navigationitems extends Component{
                   type: "SET_PHONE",
                   payload: phone
               })
-          }
+        }
     }
   }
 export default connect(mapStateToProps,mapDispathToProps)(Navigationitems)

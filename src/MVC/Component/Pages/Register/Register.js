@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
 import * as firebase from 'firebase'
-
+import {NavLink} from 'react-router-dom'
 class Register extends Component{
   constructor() {
     super();
@@ -91,11 +91,8 @@ onchoosePicture = (event) => {
             })
         });
 }
-
-
 componentDidMount=()=>{
-   
-    firebase.database().ref('Register/Member').once('value').then((snapshort) => {
+   return firebase.database().ref('Register/Member').once('value').then((snapshort) => {
         var items = []
         snapshort.forEach(function (childSnapshort) {
             var childData = childSnapshort.val()
@@ -107,7 +104,6 @@ componentDidMount=()=>{
             })
         });
  }
-
 onRegister = () => {
     firebase.database().ref('Register/Member/'+this.state.Username).set({
         ID : this.state.key,
@@ -121,21 +117,9 @@ onRegister = () => {
         Repeat: this.state.Repeat,
         Picture: this.state.Picture,
         Status : "Member"
-    }).then(response => {
-        if (this.state.Password == this.state.Repeat) {
-            alert("Add Sucess")
-            this.props.history.push('/Login')
-        }
-        if (this.state.Password != this.state.Repeat) {
-            alert("Please set password same value")
-            this.props.history.push('/Register')
-        }
     });
 }
 
-onReturn = () => {
-    this.props.history.push("/Login")
-}
     render(){
         return (
           <div className="container">
@@ -193,7 +177,7 @@ onReturn = () => {
           <div className="container">
           <div className="row" style={{padding : "10px"}}>
           <div className="col" >
-              <button type="button" className="btn btn-danger" onClick={this.onReturn} style={{width : '100%'}}>Cancel</button>
+              <NavLink exact to="/"><button type="button" className="btn btn-danger" onClick={this.onReturn} style={{width : '100%'}}>Cancel</button></NavLink>
           </div>
           <div className="col" style={{textAlign : "center"}}><button type="submit" className="btn btn-success" onClick={this.onRegister} style={{width : '100%'}}>Sign Up</button></div>
           </div> </div>
