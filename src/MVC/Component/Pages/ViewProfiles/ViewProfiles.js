@@ -203,7 +203,7 @@ class ViewProfiles extends Component{
           select.insertBefore(option,select.lastChild);  
     }
     }
-    
+
     //Life cycles
     componentDidMount=()=>{
         this.hanlersetValuetoProfiles()
@@ -211,7 +211,6 @@ class ViewProfiles extends Component{
         this.hanlerStatus()
         }
         this.handlerViewprofilescontroller()
-        
     }
     render(){
         let Modal = null 
@@ -336,10 +335,6 @@ class ViewProfiles extends Component{
         </div> </div>
         </div>
         </div></center>
-        
-      }
-      if(this.props.login.loginstatus!==null){
-
       }
         return(
             <div className="container">

@@ -5,15 +5,11 @@ import { NavLink } from 'react-router-dom'
 import mapStateToProps from '../../Controler/Mapstate/Mapstate'
 import Login from '../../Models/Loginbean'
  class User extends Component {
-   componentDidMount=()=>{
-    
-   }
      hanlerdeleteUser=()=>{
         return  firebase.database().ref('Register/Member/'+this.props.Username).remove();
      }
      hanlersetUser=()=>{
          this.props.setLoginStatus(this.props.Username)
-         
      }
     render(){
       let disablecheck = false
