@@ -57,20 +57,20 @@ class Navigationitems extends Component{
                 picture : items[k].Picture,
                 typemember : items[k].Status,
                 id : items[k].ID
-              })
+              });
             }
         }
         if(this.state.request==="001"){
-          this.props.setUsername(this.state.username)
-          this.props.setPassword(this.state.password)
-          this.props.setName(this.state.name)
-          this.props.setLastname(this.state.lastname)
-          this.props.setAddress(this.state.address)
-          this.props.setEmail(this.state.email)
-          this.props.setPhone(this.state.phone)
-          this.props.setPicture(this.state.picture)
-          this.props.setTypemember(this.state.typemember)
-          this.props.setID(this.state.id)
+          this.props.setUsername(this.state.username);
+          this.props.setPassword(this.state.password);
+          this.props.setName(this.state.name);
+          this.props.setLastname(this.state.lastname);
+          this.props.setAddress(this.state.address);
+          this.props.setEmail(this.state.email);
+          this.props.setPhone(this.state.phone);
+          this.props.setPicture(this.state.picture);
+          this.props.setTypemember(this.state.typemember);
+          this.props.setID(this.state.id);
         }
     });
       

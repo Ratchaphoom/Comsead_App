@@ -1,0 +1,12 @@
+.Fillter{
+    font-family: 'Lobster', cursive;
+    align-items: center;
+    font-size: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    text-align: left;
+    float: initial;
+    width: fit-content;
+    border: "20px"
+}
