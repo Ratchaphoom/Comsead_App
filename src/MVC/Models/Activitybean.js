@@ -12,13 +12,23 @@ const Activity = (dispath) => {
             })
         }, setPrice: (price) =>{
             dispath({
-                type: "SET_PRICE",
+                type: "SET_ACTIVITY_PRICE",
                 payload: price
             })
         }, setDescription: (description) =>{
             dispath({
-                type: "SET_DESCRIPTION",
+                type: "SET_ACTIVITY_DESCRIPTION",
                 payload: description
+            })
+        },setCategolry: (categolry) =>{
+            dispath({
+                type: "SET_ACTIVITY_CATEGOLRY",
+                payload: categolry
+            })
+        },setImages: (images) =>{
+            dispath({
+                type: "SET_ACTIVITY_IMAGES",
+                payload: images
             })
         }
     }

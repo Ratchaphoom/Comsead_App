@@ -17,7 +17,8 @@ class Register extends Component{
         Picturename: null,
         Picture: null,
         uploadValue: 0,
-        key : null
+        key : null,
+        Request : null
     };
     this.onchoosePicture = this.onchoosePicture.bind(this);
 }
@@ -117,10 +118,55 @@ onRegister = () => {
         Repeat: this.state.Repeat,
         Picture: this.state.Picture,
         Status : "Member"
+    }).then(()=>{
+        this.setState({
+            Request : "001"
+        });
     });
+
 }
 
     render(){
+        let Modal = null 
+        Modal = <div className="modal fade" id="RegisterProfiles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">Edit Profiles</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              Are you sure to register?
+            </div>
+            <div className="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onClick={this.hanlerEditNewProfiles}>Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      if(this.state.Request === "001" && this.state!==null){
+        Modal = <div className="modal fade" id="RegisterProfiles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">Edit Profiles</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              Register Success
+            </div>
+            <div className="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
         return (
           <div className="container">
           <center><div className="card shadow p-3 mb-5 bg-white rounded" style={{width : "800px"}}>
@@ -179,79 +225,14 @@ onRegister = () => {
           <div className="col" >
               <NavLink exact to="/"><button type="button" className="btn btn-danger" onClick={this.onReturn} style={{width : '100%'}}>Cancel</button></NavLink>
           </div>
-          <div className="col" style={{textAlign : "center"}}><button type="submit" className="btn btn-success" onClick={this.onRegister} style={{width : '100%'}}>Sign Up</button></div>
+          <div className="col" style={{textAlign : "center"}}><button type="submit" className="btn btn-success" onClick={this.onRegister} style={{width : '100%'}} 
+           data-toggle="modal" data-target="#RegisterProfiles">Sign Up</button></div>
           </div> </div>
           </div>
           </div></center>
+          {Modal}
       </div>
         )
     }
 }
-const mapStateToProps = (state) => {
-    return {
-      member : state.member,
-      login : state.login,
-    }
-  };
-
-  const mapDispathToProps = (dispath) => {
-    return {
-        setUsername: (username) => {
-            dispath({
-              type: "SET_USERNAME",
-              payload: username
-            })
-          }, setPassword: (password) => {
-            dispath({
-              type: "SET_PASSWORD",
-              payload: password
-            })
-          },setLoginStatus: (loginstatus) => {
-            dispath({
-              type: "LOGIN_STATUS",
-              payload: loginstatus
-            })
-          },setID: (id) => {
-            dispath({
-              type: "SET_ID",
-              payload: id
-            })
-          }, setName: (name) => {
-            dispath({
-              type: "SET_NAME",
-              payload: name
-            })
-          },setLastname: (lastname) => {
-            dispath({
-              type: "SET_LASTNAME",
-              payload: lastname
-            })
-          },setPicture: (picture) => {
-            dispath({
-              type: "SET_PICTURE",
-              payload: picture
-            })
-          },setTypemember: (typemember) => {
-            dispath({
-              type: "SET_TYPEMEMBER",
-              payload: typemember
-            })
-          },setEmail: (email) => {
-            dispath({
-              type: "SET_EMAIL",
-              payload: email
-            })
-          },setAddress: (address) => {
-            dispath({
-              type: "SET_ADDRESS",
-              payload: address
-            })
-          },setPhone: (phone) =>{
-              dispath({
-                  type: "SET_PHONE",
-                  payload: phone
-              })
-          }
-    }
-  };
-export default connect(mapStateToProps,mapDispathToProps)(Register)
+export default Register

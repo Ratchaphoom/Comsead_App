@@ -34,10 +34,7 @@ class Users extends Component{
                     />
                     })
                 }                
-                
                 </div>
-            
-            
         </div>
         )
     }

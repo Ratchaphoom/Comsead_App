@@ -112,7 +112,7 @@ class Navigationitems extends Component{
             </div>
             <div className="modal-footer">
              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-             <button type="button" className="btn btn-primary" onClick={this.hanlerLogout}>Sure</button>
+             <NavLink exact to="/"><button type="button" className="btn btn-primary" onClick={this.hanlerLogout}>Sure</button></NavLink>
             </div>
           </div>
         </div>
@@ -149,13 +149,13 @@ class Navigationitems extends Component{
           <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{adminusername}</NavLink>
           <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={adminpicture} alt="Logo" height="60" width="auto" /></div></NavLink>
-          <NavLink className="dropdown-item" exact to="/ReservationRoom">ReservationRoom</NavLink>
+          <NavLink className="dropdown-item" exact to="/AddReservationRoom">ReservationRoom</NavLink>
           <NavLink className="dropdown-item" exact to="/SuperUserEditRoom">Edit ReservationRoom</NavLink>
           <NavLink className="dropdown-item" exact to="/SuperUserCancelRoom">Delete ReservationRoom</NavLink>
-          <NavLink className="dropdown-item" exact to="/ReservationActivity">ReservationActivity</NavLink>
+          <NavLink className="dropdown-item" exact to="/AddReservationActivity">ReservationActivity</NavLink>
           <NavLink className="dropdown-item" exact to="/SuperUserEditActivity">Edit ReservationActivity</NavLink>
           <NavLink className="dropdown-item" exact to="/SuperUserCancelActivity">Delete ReservationActivity</NavLink>
-          <NavLink className="dropdown-item" exact to="/ReservationEvent">ReservationEvent</NavLink>
+          <NavLink className="dropdown-item" exact to="/AddReservationEvent">ReservationEvent</NavLink>
           <NavLink className="dropdown-item" exact to="/SuperUserEditEvent">Edit ReservationEvent</NavLink>
           <NavLink className="dropdown-item" exact to="/SuperUserCancelEvent">Delete ReservationEvent</NavLink>
           <NavLink className="dropdown-item" exact to="/SuperUserSetpermission">Permission</NavLink>
@@ -172,7 +172,7 @@ class Navigationitems extends Component{
         <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{adminusername}</NavLink>
         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={adminpicture} alt="Logo" height="60" width="auto" /></div></NavLink>
-        <NavLink className="dropdown-item" exact to="/ReservationRoom">ReservationRoom</NavLink>
+        <NavLink className="dropdown-item" exact to="/AddReservationRoom">ReservationRoom</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserEditRoom">Edit ReservationRoom</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserCancelRoom">Delete ReservationRoom</NavLink>
         <NavLink className="dropdown-item" exact to="/ReservationList">Reservation List</NavLink>
@@ -189,7 +189,7 @@ class Navigationitems extends Component{
         <NavLink className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" exact to="/Home">{adminusername}</NavLink>
         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={adminpicture} alt="Logo" height="60" width="auto" /></div></NavLink>
-        <NavLink className="dropdown-item" exact to="/ReservationActivity">ReservationActivity</NavLink>
+        <NavLink className="dropdown-item" exact to="/AddReservationActivity">ReservationActivity</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserEditActivity">Edit ReservationActivity</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserCancelActivity">Delete ReservationActivity</NavLink>
         <NavLink className="dropdown-item" exact to="/ReservationList">Reservation List</NavLink>
@@ -205,7 +205,7 @@ class Navigationitems extends Component{
        {adminusername}</NavLink>
         <div className="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
         <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={adminpicture} alt="Logo" height="60" width="auto" /></div></NavLink>
-        <NavLink className="dropdown-item" exact to="/ReservationEvent">ReservationEvent</NavLink>
+        <NavLink className="dropdown-item" exact to="/AddReservationEvent">ReservationEvent</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserEditEvent">Edit ReservationEvent</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserCancelEvent">Delete ReservationEvent</NavLink>
         <NavLink className="dropdown-item" exact to="/ReservationList">Reservation List</NavLink>

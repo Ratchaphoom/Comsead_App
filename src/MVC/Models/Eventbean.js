@@ -12,15 +12,25 @@ const Events = (dispath) => {
         })
       }, setPrice: (price) => {
         dispath({
-          type: "SET_PRICE",
+          type: "SET_EVENT_PRICE",
           payload: price
         })
-      }, setPrice: (description) => {
+      }, setDescription: (description) => {
         dispath({
-          type: "SET_DESCRIPTION",
+          type: "SET_EVENT_DESCRIPTION",
           payload: description
         })
-      }
+      },setCategolry: (categolry) =>{
+        dispath({
+            type: "SET_EVENT_CATEGOLRY",
+            payload: categolry
+        })
+    },setImages: (images) =>{
+      dispath({
+          type: "SET_EVENT_IMAGES",
+          payload: images
+      })
+  }
     }
   }
   export default Events

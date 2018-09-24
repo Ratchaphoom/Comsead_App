@@ -6,6 +6,26 @@ import Users from '../../../Manager/Users'
      state = {
          userList : []
      } 
+     componentDidUpdate=()=>{
+        firebase.database().ref('Register/Member').once('value').then((snapshort) => {
+            var items = []
+            let userList = []
+            snapshort.forEach(function (childSnapshort) {
+                var childData = childSnapshort.val()
+                items.push(childData)
+            })
+            var user = Object.keys(items)
+            for (var i = 0; i < user.length; i++) {
+                let k = user[i]
+                userList.push({
+                    ...items[k]
+                });
+                }
+                this.setState({
+                    userList : userList
+                });
+            });
+     }
      componentDidMount=()=>{
         firebase.database().ref('Register/Member').once('value').then((snapshort) => {
             var items = []
@@ -19,11 +39,11 @@ import Users from '../../../Manager/Users'
                 let k = user[i]
                 userList.push({
                     ...items[k]
-                })
+                });
+                }
                 this.setState({
                     userList : userList
-                })
-                }
+                });
             });
      }
      render(){

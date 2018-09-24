@@ -2,7 +2,9 @@ const Events = (state = {
     id: null,
     eventname: null,
     price: null,
-    description: null
+    description: null,
+    categolry: null,
+    images: null
 }, action) => {
     switch (action.type) {
         case 'SET_EVENT_ID':
@@ -17,16 +19,28 @@ const Events = (state = {
                 eventname: action.payload
             }
             break;
-        case 'SET_DESCRIPTION':
+        case 'SET_EVENT_DESCRIPTION':
             state = {
                 ...state,
                 description: action.payload
             }
             break;
-        case 'SET_PRICE':
+        case 'SET_EVENT_PRICE':
             state = {
                 ...state,
                 price: action.payload
+            }
+            break;
+        case 'SET_EVENT_CATEGOLRY':
+            state = {
+                ...state,
+                categolry: action.payload
+            }
+            break;
+        case 'SET_EVENT_IMAGES':
+            state = {
+                ...state,
+                images: action.payload
             }
             break;
     }
