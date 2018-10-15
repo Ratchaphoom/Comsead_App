@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import $ from 'jquery'
 import mapStateToProps from '../../../MVC/Controler/Mapstate/Mapstate'
 import * as firebase from 'firebase'
+import Header from '../Header/Header';
 
 class Navigationitems extends Component{
     state={
@@ -136,9 +137,8 @@ class Navigationitems extends Component{
           {adminusername}</NavLink>
           <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <NavLink className="dropdown-item" exact to="/Viewprofiles"><div style={{textAlign : "center"}}><img style={{borderRadius : "50%"}} src={adminpicture} alt="Logo" height="60" width="auto" /></div></NavLink>
-          <NavLink className="dropdown-item" exact to="/ReservationRoom">ReservationRoom</NavLink>
           <NavLink className="dropdown-item" exact to="/ReservationList">ReservationList</NavLink>
-          <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout">Logout</NavLink>
+          <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout" >Logout</NavLink>
           </div>
           <span className="sr-only">(current)</span>
           </li>
@@ -159,8 +159,9 @@ class Navigationitems extends Component{
           <NavLink className="dropdown-item" exact to="/SuperUserEditEvent">Edit ReservationEvent</NavLink>
           <NavLink className="dropdown-item" exact to="/SuperUserCancelEvent">Delete ReservationEvent</NavLink>
           <NavLink className="dropdown-item" exact to="/SuperUserSetpermission">Permission</NavLink>
+          <NavLink className="dropdown-item" exact to="/ContactList">Contact List</NavLink>
           <NavLink className="dropdown-item" exact to="/ReservationList">Reservation List</NavLink>
-          <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout">Logout</NavLink>
+          <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout" >Logout</NavLink>
 
           </div>
           <span className="sr-only">(current)</span>
@@ -175,7 +176,7 @@ class Navigationitems extends Component{
         <NavLink className="dropdown-item" exact to="/AddReservationRoom">ReservationRoom</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserEditRoom">Edit ReservationRoom</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserCancelRoom">Delete ReservationRoom</NavLink>
-        <NavLink className="dropdown-item" exact to="/ReservationList">Reservation List</NavLink>
+        <NavLink className="dropdown-item" exact to="/ReservationRoomList">Reservation List</NavLink>
         <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout">Logout</NavLink>
 
         </div>
@@ -192,7 +193,7 @@ class Navigationitems extends Component{
         <NavLink className="dropdown-item" exact to="/AddReservationActivity">ReservationActivity</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserEditActivity">Edit ReservationActivity</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserCancelActivity">Delete ReservationActivity</NavLink>
-        <NavLink className="dropdown-item" exact to="/ReservationList">Reservation List</NavLink>
+        <NavLink className="dropdown-item" exact to="/ReservationActivityList">Reservation List</NavLink>
         <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout">Logout</NavLink>
         </div>
         <span className="sr-only">(current)</span>
@@ -208,7 +209,7 @@ class Navigationitems extends Component{
         <NavLink className="dropdown-item" exact to="/AddReservationEvent">ReservationEvent</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserEditEvent">Edit ReservationEvent</NavLink>
         <NavLink className="dropdown-item" exact to="/SuperUserCancelEvent">Delete ReservationEvent</NavLink>
-        <NavLink className="dropdown-item" exact to="/ReservationList">Reservation List</NavLink>
+        <NavLink className="dropdown-item" exact to="/ReservationEventList">Reservation List</NavLink>
         <NavLink className="dropdown-item" exact to="/" data-toggle="modal" data-target="#exampleLogout">Logout</NavLink>
         </div>
         <span className="sr-only">(current)</span>
@@ -217,7 +218,7 @@ class Navigationitems extends Component{
       }
         if(this.props.login.username === null){
             loginlink = <div style={{paddingRight : "125px"}}>
-                        <NavLink className="nav-link" exact to="/Login"><div style={{fontSize : "16px"}}>Login</div></NavLink>
+                        <NavLink className="nav-link" exact to="/Login"><div style={{fontSize : "16px"}}>Login <i class="fas fa-sign-in-alt"></i></div></NavLink>
                         <span className="sr-only">(current)</span>
                         </div>
             datataget = "#Login"
@@ -295,13 +296,13 @@ class Navigationitems extends Component{
                         Accomodation
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <NavLink exact to="/Accomodation" className="dropdown-item" >All Rooms</NavLink>
                         <NavLink exact to="/Riverwing" className="dropdown-item" >River wing</NavLink>
                         <NavLink exact to="/Villawing" className="dropdown-item" >Villa wing</NavLink>
                         <NavLink exact to="/Gardenwing" className="dropdown-item" >Garden wing</NavLink>
                         <NavLink exact to="/Mountainviewwing" className="dropdown-item" >Moutain View wing</NavLink>
                         <NavLink exact to="/Familyroom" className="dropdown-item" >16 Beds Family Room</NavLink>
                         <NavLink exact to="/Familyhouse" className="dropdown-item" >Family House</NavLink>
-                        <NavLink exact to="/Deluxevilla" className="dropdown-item" >Deluxe Villa</NavLink>
                         <NavLink exact to="/Gardenview" className="dropdown-item" >Garden View</NavLink>
                         </div>
                     </li>
@@ -315,7 +316,7 @@ class Navigationitems extends Component{
                         <span className="sr-only">(current)</span>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" exact to="/"><div style={{fontSize : "16px"}}>Contact</div></NavLink>
+                        <NavLink className="nav-link" exact to="/Contact"><div style={{fontSize : "16px"}}>Contact</div></NavLink>
                         <span className="sr-only">(current)</span>
                     </li>
                     </ul>
@@ -330,13 +331,7 @@ class Navigationitems extends Component{
             </nav>
             {popup}
             {logoutlink}
-            <div className="bg img-fluid">
-            <div style={{alignItems : "center",padding : "300px"}} data-aos="zoom-in">
-            <div className="headerfont">Welcome to<div data-aos="fade-in" style={{width: "200px",marginLeft : "auto",marginRight:"auto"}}><img className="img-fluid" alt="Responsive image" src={Logo} style={{width : "300px"}}/></div></div>
-            <hr className="hr-light wow fadeInLeft" data-wow-delay="0.3s"/>
-            <div style={{textAlign : "center",fontSize:"15px",padding : "10px",color : "#F4F5F8"}}>คำแสด ริเวอร์ แคว รีสอร์ท มอบความสะดวกสบายให้กับวันหยุดพักผ่อนของท่านด้วยบรรยากาศ สวนป่าเขียวขจี พร้อมกิจกรรมสนุกสนานเพลิดเพลิน และ ห้องพัก ที่ให้ความรู้สึกเหมือนบ้าน และมีความเป็นส่วนตัวสูงกว่ามาตรฐานทั่วไป</div>   
-            </div>
-            </div>
+           <Header/>
             </div>
         );
     }

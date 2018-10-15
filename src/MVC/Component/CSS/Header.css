@@ -1,0 +1,21 @@
+.bg {
+    /* The image used */
+    background-image: url("../../../Images/breakfast-801827.jpg") !important;
+    /* Full height */
+    height: 100% !important;
+    /* Center and scale the image nicely */
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.bg2 {
+    /* The image used */
+    background-image: url("../../../Images/harvesting-1822477.jpg") !important;
+    /* Full height */
+    height: 100% !important;
+    /* Center and scale the image nicely */
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}

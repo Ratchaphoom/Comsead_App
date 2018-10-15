@@ -272,34 +272,36 @@ class ViewProfiles extends Component{
         Profiles=<div></div>
       }
       if(this.props.login.username!==null){
-        Profiles = <center><div className="card shadow p-3 mb-5 bg-white rounded" style={{width : "800px"}}>
-        <img className="card-img-top" src={this.state.Picturename} alt="Card image cap" style={{borderRadius : "50%"}} />
+        Profiles = <center>
+         <h1 className="text-center" style={{fontSize:"60px",width:"fit-content"}}>This is your profiles<br/></h1>    
+        <div className="card shadow-lg p-3 mb-5 bg-white rounded" style={{width : "800px",paddingTop:"50px"}}>
+        <img className="card-img-top" src={this.state.Picturename} alt="Card image cap"/>
         <div className="card-body">
         <div className="container"><div class="row">
         <div class="col">
-        <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold"}}>Name</div>  </p><br/>
+        <p className="palagrapht text-left"> <div className="text-left" style={{fontSize: "20px" ,fontWeight : "bold"}}><i class="fas fa-user"></i> Name</div>  </p><br/>
         <input type="text" className="form-control" onChange={this.onsetName} value={this.state.Name} /><br/>
         </div>
         <div className="col">
-        <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold"}}>Lastname</div> </p><br/>
+        <p className="palagrapht text-left"> <div className="text-left" style={{fontSize: "20px" ,fontWeight : "bold"}}><i class="fas fa-user"></i> Lastname</div> </p><br/>
         <input type="text" className="form-control"  onChange={this.onsetLastName} value={this.state.Lastname}/><br/>  
         </div>
         </div></div>
         
         <div className="container"><div className="row">
         <div className="col">
-        <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold"}}>Address</div></p><br/>
-        <input type="text" className="form-control"  onChange={this.onsetAddress} value={this.state.Address}/><br/>  
+        <p className="palagrapht text-left"> <div className="text-left" style={{fontSize: "20px" ,fontWeight : "bold"}}><i class="fas fa-address-book"></i> Address</div></p><br/>
+        <textarea  className="form-control" id="exampleFormControlTextarea1" rows="3" onChange={this.onsetAddress} value={this.state.Address}/><br/>  
         </div>
         <div className="col">
-        <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold"}}>Email</div></p><br/>
-        <input type="text" className="form-control"  onChange={this.onsetEmail} value={this.state.Email}/><br/>  
+        <p className="palagrapht text-left"> <div className="text-left" style={{fontSize: "20px" ,fontWeight : "bold"}}><i class="fas fa-envelope"></i> Email</div></p><br/>
+        <input type="email" className="form-control"  placeholder="name@example.com"  onChange={this.onsetEmail} value={this.state.Email}/><br/>  
         </div>
         </div></div>
         
         <div className="container"><div className="row">
         <div className="col">
-        <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold"}}>Phone</div></p><br/>
+        <p className="palagrapht text-left"> <div className="text-left" style={{fontSize: "20px" ,fontWeight : "bold"}}><i class="fas fa-phone"></i> Phone</div></p><br/>
         <input type="text" className="form-control"  onChange={this.onsetPhone} value={this.state.Phone}/><br/>  
         </div>
         <div className="col">
@@ -308,16 +310,16 @@ class ViewProfiles extends Component{
         
         <div className="container"><div class="row">
         <div className="col">
-        <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold"}}>Username</div></p><br/>
+        <p className="palagrapht text-left"> <div className="text-left" style={{fontSize: "20px" ,fontWeight : "bold"}}> <i class="fas fa-user"></i> Username</div></p><br/>
         <input type="text" className="form-control" onChange={this.onsetUsername} value={this.state.Username}/><br/>  
         </div>
         <div class="col">
-        <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold"}}>Password</div></p><br/>
+        <p className="palagrapht text-left"> <div className="text-left" style={{fontSize: "20px" ,fontWeight : "bold"}}> <i class="fas fa-unlock-alt"></i> Password</div></p><br/>
         <input type="password" className="form-control"  onChange={this.onsetPassword} value={this.state.Password}/><br/>  
         </div>
         </div> </div>
         <div className="container">
-                    <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold"}}>Status</div> </p><br/>
+                    <p className="palagrapht text-left"> <div className="text-left" style={{fontSize: "20px" ,fontWeight : "bold"}}><i class="fas fa-battery-full"></i> Status</div> </p><br/>
                     <select id="select"className="form-control" value={this.state.Typemember} onChange={this.hanlerSelect}  disabled={Checkdisable}>
                     <option value="default">default</option>
                     </select>
@@ -337,7 +339,7 @@ class ViewProfiles extends Component{
         </div></center>
       }
         return(
-            <div className="container">
+            <div className="container" style={{paddingTop:"50px"}}>
                 {Profiles}
                 {Modal}
             </div>

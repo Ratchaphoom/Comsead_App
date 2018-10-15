@@ -4,7 +4,8 @@ const Events = (state = {
     price: null,
     description: null,
     categolry: null,
-    images: null
+    images: null,
+    amount: null
 }, action) => {
     switch (action.type) {
         case 'SET_EVENT_ID':
@@ -41,6 +42,12 @@ const Events = (state = {
             state = {
                 ...state,
                 images: action.payload
+            }
+            break;
+        case 'SET_EVENT_AMOUNT':
+            state = {
+                ...state,
+                amount: action.payload
             }
             break;
     }

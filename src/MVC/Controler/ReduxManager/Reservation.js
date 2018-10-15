@@ -13,6 +13,9 @@ const Reservations = (state = {
     eventname: null,
     priceofevent: null,
     totals: null,
+    activityamount: null,
+    eventamount: null,
+    billstatus: null
 }, action) => {
     switch (action.type) {
         case 'SET_RESERVATION_ID':
@@ -57,7 +60,7 @@ const Reservations = (state = {
                 roomname: action.payload
             }
             break;
-        case 'SET_PRICE_OF_ROOM':
+        case 'SET_ROOM_PRICE':
             state = {
                 ...state,
                 priceofroom: action.payload
@@ -69,7 +72,7 @@ const Reservations = (state = {
                 activityname: action.payload
             }
             break;
-        case 'SET_PRICE_OF_ACTIVITY':
+        case 'SET_ACTIVITY_PRICE':
             state = {
                 ...state,
                 priceofactivty: action.payload
@@ -81,7 +84,7 @@ const Reservations = (state = {
                 eventname: action.payload
             }
             break;
-        case 'SET_PRICE_OF_EVENT':
+        case 'SET_EVENT_PRICE':
             state = {
                 ...state,
                 priceofevent: action.payload
@@ -97,6 +100,24 @@ const Reservations = (state = {
             state = {
                 ...state,
                 username: action.payload
+            }
+            break;
+        case 'SET_EVENT_AMOUNT':
+            state = {
+                ...state,
+                eventamount: action.payload
+            }
+            break;
+        case 'SET_ACTIVITY_AMOUNT':
+            state = {
+                ...state,
+                activityamount: action.payload
+            }
+            break;
+        case 'SET_BILL_STATUS':
+            state = {
+                ...state,
+                billstatus: action.payload
             }
             break;
     }

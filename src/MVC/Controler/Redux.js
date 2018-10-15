@@ -13,6 +13,7 @@ import Events from './ReduxManager/Event'
 import Activity from './ReduxManager/Activity'
 import Room from './ReduxManager/Room'
 import Reservation from './ReduxManager/Reservation'
+import Contact from './ReduxManager/Contact'
 
 
 
@@ -30,7 +31,8 @@ const store = createStore(combineReducers({
         login : Login,
         room :Room,
         activity : Activity,
-        event :Events
+        event :Events,
+        contact : Contact
     }), {}, applyMiddleware(mylongger, logger)
 );
 export default store

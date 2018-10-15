@@ -16,7 +16,7 @@ class Users extends Component{
         });
         return(
             <div className="container-fluid">
-                 <div className="Fillter" style={{float: "left"}}>Filterable List</div>
+                 <h1 className="text-left" style={{fontSize:"60px",width:"fit-content"}}>This is your member profiles<br/></h1>
                 <input class="form-control" id="myInput" type="text" placeholder="Name.." onChange={this.hanlerSearching}/>
                 <br/>
                 <div className="card-columns ">

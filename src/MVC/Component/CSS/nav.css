@@ -1,4 +1,7 @@
-body{background:#f9f9f9;}
+body{
+    background:#e6e6e6;
+    
+}
 /* #wrapper{padding:90px 15px;}
 .navbar-expand-lg .navbar-nav.side-nav{flex-direction: column;text-align: center;}
 .card{margin-bottom: 15px; border-radius:0; box-shadow: 0 3px 5px rgba(0,0,0,.1); }
@@ -52,13 +55,13 @@ Cards with background im
 
 .bg {
     /* The image used */
-    background-image: url("../../../Images/Header.jpg");
+    background-image: url("../../../Images/Header.jpg") !important;
     /* Full height */
-    height: 100%;
+    height: 100% !important;
     /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
 }
 
 .headerfont{

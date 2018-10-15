@@ -27,10 +27,30 @@ class RoomList extends Component{
               })
         })
     }
+    componentDidMount=()=>{
+        firebase.database().ref('RoomDB/').once('value').then((snapshort)=>{
+            var items = []
+            let roomList = []
+            snapshort.forEach(function (childSnapshort) {
+                var childData = childSnapshort.val()
+                items.push(childData)
+            })
+            var rooms = Object.keys(items)
+            for(var i=0;i<rooms.length;i++){
+                let k = rooms[i]
+                roomList.push({
+                    ...items[k]
+                })
+            }
+            this.setState({
+                roomList : roomList
+              })
+        })
+    }
     render(){
         return(
             <div className="container">
-                <RoomManager roomList={this.state.roomList} status={this.props.status}/>
+                <RoomManager roomList={this.state.roomList} status={this.props.status} namepage={this.props.namepage}/>
             </div>
         )
     }

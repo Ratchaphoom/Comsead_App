@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
         room: state.room,
         activity: state.activity,
         event: state.event,
+        contact:state.contact
     }
 }
 

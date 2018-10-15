@@ -6,7 +6,6 @@ const Userreducer = (state = {
     address: null,
     phone: null,
     email: null,
-    name: null,
     lastname: null,
 }, action) => {
     switch (action.type) {

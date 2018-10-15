@@ -18,7 +18,7 @@ import Login from '../../Models/Loginbean'
       }
         return(
                 <div>
-                <div className="card example z-depth-3" data-aos="zoom-in">
+                <div className="card shadow-lg" data-aos="zoom-in">
                     <img className="img-fluid hoverable hoverable" src={this.props.Picture} style={{width : "100%"}} alt="Card image cap" />
                     <div className="card-body">
                     <h5 className="card-title">{this.props.Name}</h5>

@@ -4,7 +4,8 @@ const Activity = (state = {
     price: null,
     description: null,
     categolry: null,
-    images: null
+    images: null,
+    amount: null
 }, action) => {
     switch (action.type) {
         case 'SET_ACTIVITY_ID':
@@ -41,6 +42,12 @@ const Activity = (state = {
             state = {
                 ...state,
                 images: action.payload
+            }
+            break;
+        case 'SET_ACTIVITY_AMOUNT':
+            state = {
+                ...state,
+                amount: action.payload
             }
             break;
     }

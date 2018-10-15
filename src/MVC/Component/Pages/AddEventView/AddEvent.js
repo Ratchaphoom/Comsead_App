@@ -11,7 +11,14 @@ class AddEvent extends Component{
         EventPrice : null,
         EventDescription : null,
         EventImages : null,
-        Request : null
+        Request : null,
+        UpdateID : null,
+        percentage : null,
+        check1 : null,
+        check2 : null,
+        check3 : null
+
+
     }
     //HandlerController
     handlerEventname=(event)=>{
@@ -33,6 +40,28 @@ class AddEvent extends Component{
         const file = event.target.files[0];
         const storageRef = firebase.storage().ref('Pictures/' + " ' " + file.name + " ' ");
         const upload = storageRef.put(file);
+        let progress = null
+        upload.on('state_changed',(snapshot)=>{
+       // Observe state change events such as progress, pause, and resume
+       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+       progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+       console.log('Upload is ' + progress + '% done');
+       switch (snapshot.state) {
+         case firebase.storage.TaskState.PAUSED: // or 'paused'
+           console.log('Upload is paused');
+           break;
+         case firebase.storage.TaskState.RUNNING: // or 'running'
+           console.log('Upload is running');
+           break;
+       }
+       this.setState({
+           percentage:progress
+       })
+     },(error)=> {
+       // Handle unsuccessful uploads
+       console.error
+     })
+
         upload.then(snapshot =>
             snapshot.ref.getDownloadURL()
         )
@@ -64,39 +93,68 @@ class AddEvent extends Component{
             }
                 this.setState({
                     EventId : id+1,
-                    Request : "000"
+                    UpdateID :"000",
+
                 })
         }).catch(console.error);
     }
     handalerPushRoomToProps=()=>{
-        this.props.setId(this.state.EventId)
-        this.props.setEventname(this.state.Eventname)
-        this.props.setPrice(this.state.EventPrice)
-        this.props.setDescription(this.state.EventDescription)
-        this.props.setImages(this.state.EventImages)
+        if(this.state.Eventname!==null&&this.state.EventPrice!==null&&this.state.EventDescription!==null){
+            this.props.setId(this.state.EventId)
+            this.props.setEventname(this.state.Eventname)
+            this.props.setPrice(this.state.EventPrice)
+            this.props.setDescription(this.state.EventDescription)
+            this.props.setImages(this.state.EventImages)
+        }
+       this.handlerCheckvalue()
     }
     handalerPushRoomToDatabase=()=>{
-        firebase.database().ref('EventDB/'+this.props.event.id).set({
-            ID : this.props.event.id,
-            Eventname : this.props.event.eventname,
-            Price : this.props.event.price,
-            Details : this.props.event.description,
-            Picture : this.props.event.images
-            
-        }).then(()=>{
-            this.props.setId(null)
-            this.props.setEventname(null)
-            this.props.setPrice(null)
-            this.props.setDescription(null)
-            this.props.setImages(null)
-            this.setState({
-                Request : "001",
-                Eventname : null,
-                EventPrice : null,
-                EventDescription : null,
-                EventImages : null
-            })
-        }).catch(console.error)
+        if(this.state.Eventname!==null&&this.state.EventPrice!==null&&this.state.EventDescription!==null){
+            firebase.database().ref('EventDB/'+this.props.event.id).set({
+                ID : this.props.event.id,
+                Eventname : this.props.event.eventname,
+                Price : this.props.event.price,
+                Details : this.props.event.description,
+                Picture : this.props.event.images
+                
+            }).then(()=>{
+                this.props.setId(null)
+                this.props.setEventname(null)
+                this.props.setPrice(null)
+                this.props.setDescription(null)
+                this.props.setImages(null)
+                this.setState({
+                    Request : "001",
+                    UpdateID :"001",
+                    Eventname : null,
+                    EventPrice : null,
+                    EventDescription : null,
+                    EventImages : null
+                })
+            }).catch(console.error)
+        }
+    }
+    handlerCheckvalue=()=>{
+        let check1  = null
+        let check2  = null
+        let check3  = null
+
+        let Eventname = this.state.Eventname
+        let EventPrice = this.state.EventPrice
+        let EventDescription = this.state.EventDescription
+
+        if(this.state.Eventname === null || this.state.Eventname === "" || Eventname.length < 2 ){
+            check1 = "Please input eventname && more than 2 letter."
+        }if(this.state.EventPrice === null||this.state.EventPrice === ""){
+            check2 = "Please input price."
+        }if(this.state.EventDescription === null||this.state.EventDescription === ""||this.state.EventDescription === "default"){
+            check3 = "Please input detail."
+        }
+        this.setState({
+            check1 : check1,
+            check2 : check2,
+            check3 : check3,
+        })
     }
     //LifeCycle
     componentDidMount=()=>{
@@ -105,7 +163,7 @@ class AddEvent extends Component{
         }
     }
     componentDidUpdate=()=>{
-        if(this.props.login.username!==null&&this.props.member.typemember!=="Member"&&this.state.Request === "001"){
+        if(this.props.login.username!==null&&this.props.member.typemember!=="Member"&&this.state.UpdateID === "001"){
             this.handlerLastID()
         }
     }
@@ -156,19 +214,25 @@ class AddEvent extends Component{
         if(this.props.login.username === null){
             ViewAddEvent = <div></div>
         } if(this.props.login.username !== null){
-            ViewAddEvent = <div><div className="Fillter">Add new events</div>
+            ViewAddEvent = <div><div className="h1 text-center">Add new events</div>
                             <center><div className="card" data-aos="zoom-in" style={{width : "600px"}}>
                                                 <img className="img-fluid" src={this.state.EventImages} alt="Card image cap"/>
                                                     <div className="card-body">
-                                                    <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold",width : "fit-content",float : "left"}}>Event Name</div>  </p><br/>
+                                                    <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold",width : "fit-content",float : "left"}}><i class="fas fa-star"></i> Event Name</div>  </p>
+                                                    <br/><div className="h4 text-left" style={{fontSize: "15px",color:"red"}}> {this.state.check1}</div>
+                                                    <br/>
                                                     <p className="card-text"><input type="text" className="form-control"style={{width : "100%"}}placeholder="Eventname" onChange={this.handlerEventname}/></p>
-                                                    <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold",width : "fit-content",float : "left"}}>Price</div>  </p><br/>
+                                                    <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold",width : "fit-content",float : "left"}}><i class="fas fa-money-check-alt"></i> Price</div>  </p>
+                                                    <br/><br/><div className="h4 text-left" style={{fontSize: "15px",color:"red"}}> {this.state.check2}</div>
+                                                    <br/>
                                                     <p className="card-text"><input type="number"className="form-control" style={{width : "100%"}}placeholder="price" onChange={this.handlerPrice}/></p>
-                                                    <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold",width : "fit-content",float : "left"}}>Details</div>  </p><br/>
+                                                    <p className="palagrapht"> <div style={{fontSize: "20px" ,fontWeight : "bold",width : "fit-content",float : "left"}}><i class="fas fa-font"></i> Details</div>  </p>
+                                                    <br/><br/><br/><div className="h4 text-left" style={{fontSize: "15px",color:"red"}}> {this.state.check3}</div>
+                                                    <br/>
                                                     <p className="card-title"><textarea  onChange={this.handlerDetails} class="form-control" rows="5"/></p>
                                                     <p className="card-text"><input type="file"className="form-control" style={{width : "100%"}}onChange={this.onchoosePicture}/></p>
                                                     <div className="progress">
-                                                        <div className="progress-bar" role="progressbar" style={{width : this.state.uploadValue}} aria-valuenow={this.state.uploadValue} aria-valuemin="0" aria-valuemax="100">{this.state.uploadValue}%</div>
+                                                        <div className="progress-bar" role="progressbar" style={{width : this.state.percentage+"%"}} aria-valuenow={this.state.percentage} aria-valuemin="0" aria-valuemax="100">{this.state.percentage}%</div>
                                                     </div>
                                                     <div className="conrainer" style={{padding : "10px"}}>
                                                         <div className="row">

@@ -5,30 +5,41 @@ const Activity = (dispath) => {
                 type: "SET_ACTIVITY_ID",
                 payload: id
             })
-        }, setActivityName: (activityname) =>{
+        },
+        setActivityName: (activityname) => {
             dispath({
                 type: "SET_ACTIVITYNAME",
                 payload: activityname
             })
-        }, setPrice: (price) =>{
+        },
+        setPrice: (price) => {
             dispath({
                 type: "SET_ACTIVITY_PRICE",
                 payload: price
             })
-        }, setDescription: (description) =>{
+        },
+        setDescription: (description) => {
             dispath({
                 type: "SET_ACTIVITY_DESCRIPTION",
                 payload: description
             })
-        },setCategolry: (categolry) =>{
+        },
+        setCategolry: (categolry) => {
             dispath({
                 type: "SET_ACTIVITY_CATEGOLRY",
                 payload: categolry
             })
-        },setImages: (images) =>{
+        },
+        setImages: (images) => {
             dispath({
                 type: "SET_ACTIVITY_IMAGES",
                 payload: images
+            })
+        },
+        setActivityamount: (activityamount) => {
+            dispath({
+                type: "SET_ACTIVITY_AMOUNT",
+                payload: activityamount
             })
         }
     }
